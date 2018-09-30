@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?> 
+
+<AnchorPane 
+	xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/8.0.60" 
+	fx:controller="view.ListController" minHeight="500.0" minWidth="500.0" >
+	<!-- TODO Add Nodes -->
+	<ListView fx:id="listView" prefHeight="200.0" prefWidth="600.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="0.0"  />
+      	
+        <Button text="Add"  maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="220.0"/>
+        <Button text="Edit"  maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="110.0" AnchorPane.topAnchor="220.0"/> 
+        <Button text = "Delete" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="220.0" AnchorPane.topAnchor="220.0"/>
+        
+        <Text text="Title:" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="255.0"/>
+        <TextField fx:id="titleText" prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="277.0"/>
+        
+        <Text text="Artist:" AnchorPane.leftAnchor ="130.0" AnchorPane.topAnchor="255.0"/>
+        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="130.0" AnchorPane.topAnchor="277.0"/>
+        
+        <Text text="Album:" AnchorPane.leftAnchor ="260.0" AnchorPane.topAnchor="255.0"/>
+        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="260.0" AnchorPane.topAnchor="277.0"/>
+        
+        <Text text="Year:" AnchorPane.leftAnchor ="390.0" AnchorPane.topAnchor="255.0"/>
+        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="390.0" AnchorPane.topAnchor="277.0"/>
+</AnchorPane>
