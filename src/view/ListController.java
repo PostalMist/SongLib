@@ -1,24 +1,12 @@
 package view;
 
-
-import java.io.FileNotFoundException;
 import java.util.Optional;
-
-//import java.util.Optional;
-
-//import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-//import javafx.event.EventHandler;
-//import javafx.stage.WindowEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ListView;
-//import javafx.beans.value.ChangeListener;
-//import javafx.beans.value.ObservableValue;
-
-//import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -28,8 +16,7 @@ import res.SongRecorder;
 
 public class ListController {
 
-   //@FXML ListView<String> listView;    
-	@FXML ListView<Song> listView;
+   @FXML ListView<Song> listView;
    @FXML TextField titleText;
    @FXML TextField artistText;
    @FXML TextField albumText;
@@ -39,110 +26,34 @@ public class ListController {
    @FXML Button deleteButton;
    
    
-	//private ObservableList<String> obsList;   
+	//will hold list of songs 
 	private ObservableList<Song> songlist;
 	
 	SongRecorder sr = new SongRecorder();
 
 	public void start(Stage mainStage) {                
-		// create an ObservableList 
-		// from an ArrayList  
-	/*	obsList = FXCollections.observableArrayList(                               
-				"Giants",                               
-				"Patriots",
-				"49ers",
-				"Rams",
-				"Packers",
-				"Colts",
-				"Cowboys",
-				"Broncos",
-				"Vikings",
-				"Dolphins",
-				"Titans",
-				"Seahawks",
-				"Steelers",
-				"Jaguars"); */
-      //  Song s = new Song("In my Feelings","Drake","Scorpion",2018);
-      //  Song s1 = new Song("Ye","Burna Boy","Outside",2018);
-        
-        //songlist = FXCollections.observableArrayList(s,s1);
-        try{
-        songlist = sr.read();
-        }catch(FileNotFoundException e){
-        	e.printStackTrace();
-        }
+	//Function to be called on start.
+        songlist = sr.load();
         songlist.sort(Song.BY_TITLE_ARTIST);
-        
-		//listView.setItems(obsList); 
         listView.setItems(songlist);
         listView.setEditable(true);
 		
-		// select the first item
-	      listView.getSelectionModel().select(0);
-	      //titleText.setText(listView.getSelectionModel().getSelectedItem().title);
-	      showSong(mainStage);
+		//select the first item
+	    listView.getSelectionModel().select(0);
+	    //show the details of the song in the textboxes
+	    showSong(mainStage);
 
-	      // set listener for the items
-	      listView
-	        .getSelectionModel()
-	        .selectedIndexProperty()
-	        .addListener(
-	           (obs, oldVal, newVal) -> 
-	               showSong(mainStage));
-	     /* listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>()
-	    
-	    	        {
-	    	            public void changed(ObservableValue<? extends Song> ov,
-	    	                    final Song oldvalue, final Song newvalue){
-	    	                songChanged(ov, oldvalue, newvalue);
-	    	                }});*/
-	  /*  EventHandler<WindowEvent> we =  new EventHandler<WindowEvent>(){
-    		  public void handle(WindowEvent we){
-    			  if(we.getEventType() == WindowEvent.WINDOW_CLOSE_REQUEST)
-    			  System.out.println("It is closed " + we.getEventType());
-    			  
-    		  }
-    		  
-      };*/
+	    //set listener for the items
+	     listView.getSelectionModel().selectedIndexProperty().addListener((obs, oldVal, newVal) -> showSong(mainStage));
+	     
 	      
 	      sr.getList(songlist);
 	      mainStage.setOnCloseRequest(sr);
-
-
 	}
 	
-	/*private void showItem(Stage mainStage) {                
-	      Alert alert = 
-	         new Alert(AlertType.INFORMATION);
-	      //alert.initModality(Modality.NONE);
-	      alert.initOwner(mainStage);
-	      alert.setTitle("List Item");
-	      alert.setHeaderText(
-	           "Selected list item properties");
-
-	      String content = "Index: " + 
-	          listView.getSelectionModel()
-	                   .getSelectedIndex() + 
-	          "\nValue: " + 
-	          listView.getSelectionModel()
-	                   .getSelectedItem();
-
-	          alert.setContentText(content);
-	          alert.showAndWait();
-	          //System.out.println("not blocking");
-	   }*/
 	
 	private void showSong(Stage mainStage) {                
-	     printToTextfield();
-	      //TextInputDialog dialog = new TextInputDialog(item);
-	   //   dialog.initOwner(mainStage); dialog.setTitle("List Item");
-	     // dialog.setHeaderText("Selected Item (Index: " + index + ")");
-	    //  dialog.setContentText("Enter name: ");
-
-	     // Optional<String> result = dialog.showAndWait();
-	     // if (result.isPresent()) { obsList.set(index, result.get()); }
-	      
-	      
+	     printToTextfield(); 
 	   }
 	
 	public void transaction(ActionEvent e){
@@ -184,12 +95,9 @@ public class ListController {
 					 invalidEntryAlert.showAndWait();
 				
 				}else{
+					//add song then arrange list
 				songlist.add(s);
 				songlist.sort(Song.BY_TITLE_ARTIST);
-				//Collections.sort(songlist, Song.BY_TITLE_ARTIST);
-				//listView.setItems(null);
-			   // listView.setItems(songlist);
-				//System.out.println(songlist);
 				}
 				
 				int index = songlist.indexOf(s);
@@ -217,10 +125,6 @@ public class ListController {
 			
 			int index = listView.getSelectionModel().getSelectedIndex();
 			
-			
-			
-			
-			
 			String title = titleText.getText();
 			String artist = artistText.getText();
 			String album = albumText.getText();
@@ -246,20 +150,13 @@ public class ListController {
 					 invalidEntryAlert.setContentText("This Song already exists");
 					 invalidEntryAlert.showAndWait();
 				}else{
-					/*listView.setOnEditStart(new EventHandler<ListView.EditEvent<Song>>() {
-						@Override
-						public void handle(ListView.EditEvent<Song> t) {
-							listView.getItems().set(index,s);
-							System.out.println("setOnEditCommit");
-						}
-									
-					});*/
+				//edit song and arrange list
 				songlist.set(index, s);
 				songlist.sort(Song.BY_TITLE_ARTIST);
-					
-					
 				}
 				listView.getSelectionModel().select(index);
+				
+				
 			}else{
 				
 				//flag error. There is no letter in a year
@@ -294,13 +191,13 @@ public class ListController {
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK){
-			    // ... user chose OK
+			    // user chose OK
 				songlist.remove(index);
 				listView.getSelectionModel().select(selectedIndex);
 				printToTextfield();
 				songlist.sort(Song.BY_TITLE_ARTIST);
 			} else {
-			    // ... user chose CANCEL or closed the dialog
+			    //user chose CANCEL or closed the dialog
 			}
 			
 		}
@@ -309,6 +206,7 @@ public class ListController {
 	}
 	
 	private boolean isValid(String year){
+		//Shows if a year value received is the right format
 		if(year.equals("") || year == null)
 			return true;
 		
@@ -326,6 +224,7 @@ public class ListController {
 	} 
 	
 	private void printToTextfield(){
+		//Prints description of a song to the screen
 		int index = listView.getSelectionModel().getSelectedIndex();
 		if(index <= -1){
 			titleText.setText("");
