@@ -11,19 +11,19 @@
 	<!-- TODO Add Nodes -->
 	<ListView fx:id="listView" prefHeight="200.0" prefWidth="600.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="0.0"  />
       	
-        <Button text="Add"  maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="220.0"/>
-        <Button text="Edit"  maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="110.0" AnchorPane.topAnchor="220.0"/> 
-        <Button text = "Delete" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="220.0" AnchorPane.topAnchor="220.0"/>
+        <Button text="Add" fx:id="addButton" onAction="#transaction" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="220.0"/>
+        <Button text="Edit" fx:id="editButton" onAction="#transaction" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="110.0" AnchorPane.topAnchor="220.0"/> 
+        <Button text = "Delete" fx:id="deleteButton" onAction="#transaction" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" AnchorPane.leftAnchor ="220.0" AnchorPane.topAnchor="220.0"/>
         
         <Text text="Title:" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="255.0"/>
         <TextField fx:id="titleText" prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="0.0" AnchorPane.topAnchor="277.0"/>
         
         <Text text="Artist:" AnchorPane.leftAnchor ="130.0" AnchorPane.topAnchor="255.0"/>
-        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="130.0" AnchorPane.topAnchor="277.0"/>
+        <TextField fx:id="artistText" prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="130.0" AnchorPane.topAnchor="277.0"/>
         
         <Text text="Album:" AnchorPane.leftAnchor ="260.0" AnchorPane.topAnchor="255.0"/>
-        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="260.0" AnchorPane.topAnchor="277.0"/>
+        <TextField fx:id="albumText" prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="260.0" AnchorPane.topAnchor="277.0"/>
         
         <Text text="Year:" AnchorPane.leftAnchor ="390.0" AnchorPane.topAnchor="255.0"/>
-        <TextField prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="390.0" AnchorPane.topAnchor="277.0"/>
+        <TextField fx:id="yearText" prefColumnCount="7" prefHeight="5.0" AnchorPane.leftAnchor ="390.0" AnchorPane.topAnchor="277.0"/>
 </AnchorPane>
