@@ -1,4 +1,9 @@
 package view;
+/*
+Team:
+Ebosereme Enahoro - eoe7 
+Yitzchok Dier - yid2
+*/
 
 import java.util.Optional;
 import javafx.collections.ObservableList;
